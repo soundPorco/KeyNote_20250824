@@ -43,9 +43,14 @@ button {
     font-family: inherit;
     cursor: pointer;
     transition: border-color 0.25s;
+    border: transparent 1px solid;
 }
 button:hover {
     border-color: #646cff;
+}
+
+.material-symbols-outlined {
+    text-decoration: none;
 }
 
 @media (prefers-color-scheme: light) {

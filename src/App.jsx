@@ -8,11 +8,20 @@ import "./App.css";
 
 function App() {
     const [notes, setNotes] = useState([]);
+
+    // ノート編集用関数
+    const updateNote = (id, newData) => {
+        setNotes((notes) =>
+            notes.map((note) =>
+                note.id === id ? { ...note, ...newData } : note
+            )
+        );
+    };
     return (
         <>
             <div>
                 <Title />
-                <Notes notes={notes} />
+                <Notes notes={notes} updateNote={updateNote} />
                 <AddNoteBtn notes={notes} setNotes={setNotes} />
             </div>
         </>
