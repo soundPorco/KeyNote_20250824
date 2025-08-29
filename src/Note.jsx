@@ -34,6 +34,21 @@ const Note = ({ note, updateNote }) => {
     };
     // パスワード表示用state
     const [showPassword, setShowPassword] = useState(false);
+
+    // コピー機能記述部分
+    const copyToClipboard = (copytext) => {
+        if (!editNote && copytext) {
+            navigator.clipboard
+                .writeText(copytext)
+                .then(() => {
+                    // 確認用。実際はトースト表示などがおすすめ
+                    alert("コピーしました！");
+                })
+                .catch((err) => {
+                    console.error("コピーに失敗しました: ", err);
+                });
+        } else alert("コピーするテキストがありません");
+    };
     return (
         <>
             <div className="defaultNote relative divide-y divide-gray-300 bg-white border-1 rounded-xl w-lg p-2 my-2">
@@ -74,7 +89,13 @@ const Note = ({ note, updateNote }) => {
                 <div className="loginId-part flex items-center p-3">
                     <span className="font-semibold">ログインID</span>
 
-                    <div className="ml-auto w-70 px-3 py-2 border border-gray-300 rounded-xl bg-gray-50 hover:text-blue-500 transition">
+                    <div
+                        // コピー機能
+                        onClick={() => {
+                            copyToClipboard(editData.loginId);
+                        }}
+                        className="ml-auto w-70 px-3 py-2 border border-gray-300 rounded-xl bg-gray-50 hover:text-blue-500 transition"
+                    >
                         {/* ID部分 */}
                         {/* truncate で長い文字列を省略 */}
                         <span className="truncate">
@@ -87,7 +108,7 @@ const Note = ({ note, updateNote }) => {
                                     className="w-full outline-none"
                                 />
                             ) : (
-                                <span className="truncate   px-3 py-2 ">
+                                <span className="truncate">
                                     {editData.loginId}
                                 </span>
                             )}
@@ -120,9 +141,9 @@ const Note = ({ note, updateNote }) => {
                                     className="w-full outline-none"
                                 />
                             ) : (
-                                <span className="truncate px-3 py-2 ">
+                                <span className="truncate">
                                     {!showPassword && editData.password
-                                        ? "●●●●●●●"
+                                        ? "•".repeat(editData.password.length)
                                         : editData.password}
                                 </span>
                             )}
