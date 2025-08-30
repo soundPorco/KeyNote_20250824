@@ -1,4 +1,6 @@
 import { useState } from "react";
+// コピー機能をimport
+import CopyIcon from "./CopyIcon";
 
 const Note = ({ note, updateNote }) => {
     const [toggleEdit, setToggleEdit] = useState(false);
@@ -10,6 +12,9 @@ const Note = ({ note, updateNote }) => {
         password: note.password,
         memo: note.memo,
     });
+
+    // パスワード表示用state
+    const [showPassword, setShowPassword] = useState(false);
 
     // 編集ボタンを押した時の処理
     const editNote = () => {
@@ -32,23 +37,7 @@ const Note = ({ note, updateNote }) => {
         setToggleEdit(false);
         setShowPassword(false);
     };
-    // パスワード表示用state
-    const [showPassword, setShowPassword] = useState(false);
 
-    // コピー機能記述部分
-    const copyToClipboard = (copytext) => {
-        if (!editNote && copytext) {
-            navigator.clipboard
-                .writeText(copytext)
-                .then(() => {
-                    // 確認用。実際はトースト表示などがおすすめ
-                    alert("コピーしました！");
-                })
-                .catch((err) => {
-                    console.error("コピーに失敗しました: ", err);
-                });
-        } else alert("コピーするテキストがありません");
-    };
     return (
         <>
             <div className="defaultNote relative divide-y divide-gray-300 bg-white border-1 rounded-xl w-lg p-2 my-2">
@@ -88,17 +77,11 @@ const Note = ({ note, updateNote }) => {
                 {/* ログインID */}
                 <div className="loginId-part flex items-center p-3">
                     <span className="font-semibold">ログインID</span>
-
-                    <div
-                        // コピー機能
-                        onClick={() => {
-                            copyToClipboard(editData.loginId);
-                        }}
-                        className="ml-auto w-70 px-3 py-2 border border-gray-300 rounded-xl bg-gray-50 hover:text-blue-500 transition"
-                    >
+                    {/* 表示欄の大枠 */}
+                    <div className="flex items-center relative ml-auto w-70 px-3 py-2 border border-gray-300 rounded-xl bg-gray-50">
                         {/* ID部分 */}
                         {/* truncate で長い文字列を省略 */}
-                        <span className="truncate">
+                        <span className="truncate flex-1 pr-8">
                             {toggleEdit ? (
                                 <input
                                     type="text"
@@ -108,11 +91,14 @@ const Note = ({ note, updateNote }) => {
                                     className="w-full outline-none"
                                 />
                             ) : (
-                                <span className="truncate">
-                                    {editData.loginId}
-                                </span>
+                                <span className="">{editData.loginId}</span>
                             )}
                         </span>
+                        {/* コピーアイコン */}
+                        {/* データが空の時は非表示にする */}
+                        {editData.loginId ? (
+                            <CopyIcon copyText={editData.loginId} />
+                        ) : null}
                     </div>
                 </div>
                 {/* パスワード */}
@@ -128,9 +114,9 @@ const Note = ({ note, updateNote }) => {
                         </span>
                     </span>
 
-                    <div className="ml-auto flex items-center w-70 px-3 py-2 border border-gray-300 rounded-xl bg-gray-50 text-gray-700 hover:text-blue-500 transition">
+                    <div className="ml-auto relative flex items-center w-70 px-3 py-2 border border-gray-300 rounded-xl bg-gray-50 text-gray-700 hover:text-blue-500 transition">
                         {/* パスワード部分 */}
-                        <span className="truncate ">
+                        <span className="truncate flex-1 pr-8">
                             {toggleEdit ? (
                                 <input
                                     // 表示/非表示切替
@@ -147,6 +133,11 @@ const Note = ({ note, updateNote }) => {
                                         : editData.password}
                                 </span>
                             )}
+                            {/* コピーアイコン */}
+                            {/* データが空の時は非表示にする */}
+                            {editData.loginId ? (
+                                <CopyIcon copyText={editData.loginId} />
+                            ) : null}
                         </span>
                     </div>
                 </div>
