@@ -1,6 +1,8 @@
 import { useState } from "react";
 // コピー機能をimport
 import CopyIcon from "./CopyIcon";
+import DeleteBtn from "./DeleteBtn";
+import EditBtn from "./EditBtn";
 
 const Note = ({ note, updateNote }) => {
     const [toggleEdit, setToggleEdit] = useState(false);
@@ -17,7 +19,7 @@ const Note = ({ note, updateNote }) => {
     const [showPassword, setShowPassword] = useState(false);
 
     // 編集ボタンを押した時の処理
-    const editNote = () => {
+    const startEdit = () => {
         setToggleEdit(true);
         setShowPassword(true);
     };
@@ -40,25 +42,15 @@ const Note = ({ note, updateNote }) => {
 
     return (
         <>
-            <div className="defaultNote relative divide-y divide-gray-300 bg-white border-1 rounded-xl w-lg p-2 my-2">
-                {/* 編集ボタン */}
-                {toggleEdit ? (
-                    <div
-                        className="absolute top-5 right-5 hover:text-blue-500 transition hover:cursor-pointer"
-                        onClick={saveEdit}
-                    >
-                        <span className="font-bold text-red-700">保存</span>
-                    </div>
-                ) : (
-                    <div
-                        className="absolute top-5 right-5 hover:text-blue-500 transition hover:cursor-pointer"
-                        onClick={editNote}
-                    >
-                        <span className="material-symbols-outlined !no-underline">
-                            edit
-                        </span>
-                    </div>
-                )}
+            <div className="defaultNote relative divide-y divide-gray-300 bg-white border-1 rounded-xl w-lg p-2 my-2 mx-auto">
+                <EditBtn
+                    toggleEdit={toggleEdit}
+                    startEdit={startEdit}
+                    saveEdit={saveEdit}
+                />
+
+                {/* ノートの削除ボタン */}
+                <DeleteBtn id={note.id} />
 
                 {/* ノートのタイトル */}
                 <h2 className="text-center font-bold text-xl p-5 min-h-20">
@@ -78,7 +70,7 @@ const Note = ({ note, updateNote }) => {
                 <div className="loginId-part flex items-center p-3">
                     <span className="font-semibold">ログインID</span>
                     {/* 表示欄の大枠 */}
-                    <div className="flex items-center relative ml-auto w-70 px-3 py-2 border border-gray-300 rounded-xl bg-gray-50">
+                    <div className="flex items-center relative ml-auto w-72 px-3 py-2 border border-gray-300 rounded-xl bg-gray-50">
                         {/* ID部分 */}
                         {/* truncate で長い文字列を省略 */}
                         <span className="truncate flex-1 pr-8">
@@ -114,7 +106,7 @@ const Note = ({ note, updateNote }) => {
                         </span>
                     </span>
 
-                    <div className="ml-auto relative flex items-center w-70 px-3 py-2 border border-gray-300 rounded-xl bg-gray-50 text-gray-700 hover:text-blue-500 transition">
+                    <div className="ml-auto relative flex items-center w-72 px-3 py-2 border border-gray-300 rounded-xl bg-gray-50 text-gray-700">
                         {/* パスワード部分 */}
                         <span className="truncate flex-1 pr-8">
                             {toggleEdit ? (
@@ -135,8 +127,8 @@ const Note = ({ note, updateNote }) => {
                             )}
                             {/* コピーアイコン */}
                             {/* データが空の時は非表示にする */}
-                            {editData.loginId ? (
-                                <CopyIcon copyText={editData.loginId} />
+                            {editData.password ? (
+                                <CopyIcon copyText={editData.password} />
                             ) : null}
                         </span>
                     </div>
@@ -144,7 +136,7 @@ const Note = ({ note, updateNote }) => {
                 {/* メモ */}
                 <div className="memo-part flex items-center p-3">
                     <span className="font-semibold ">メモ</span>
-                    <div className="ml-auto w-70 px-3 py-2 border border-gray-300 rounded-xl bg-gray-50">
+                    <div className="ml-auto w-72 px-3 py-2 border border-gray-300 rounded-xl bg-gray-50">
                         {/* メモ部分 */}
                         {toggleEdit ? (
                             <textarea

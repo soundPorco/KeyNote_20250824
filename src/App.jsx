@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Title from "./Title";
+import Menu from "./Menu";
 import AddNoteBtn from "./AddNoteBtn";
 import Notes from "./Notes";
+import { DeleteContext } from "./DeleteContext";
 
 import "./App.css";
 
@@ -25,14 +27,22 @@ function App() {
             )
         );
     };
+    // ノート削除用関数
+    const deleteNote = (id) => {
+        setNotes((notes) => notes.filter((note) => note.id !== id));
+        // idの異なるノートだけを残す、つまり該当するノートを削除するという意味
+        // console.log(id);
+    };
+
     return (
-        <>
-            <div>
+        <div className="text-center mx-auto">
+            <DeleteContext.Provider value={{ deleteNote }}>
                 <Title />
+                <Menu />
                 <Notes notes={notes} updateNote={updateNote} />
                 <AddNoteBtn notes={notes} setNotes={setNotes} />
-            </div>
-        </>
+            </DeleteContext.Provider>
+        </div>
     );
 }
 

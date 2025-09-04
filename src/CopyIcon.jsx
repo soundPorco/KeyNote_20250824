@@ -11,7 +11,7 @@ const CopyIcon = ({ copyText }) => {
             .writeText(copyText)
             .then(() => {
                 // 確認用。実際はトースト表示などがおすすめ
-                alert("コピーしました！");
+                // alert("コピーしました！");
                 setToggleCopy(true);
                 setTimeout(() => setToggleCopy(false), 3000); // 3秒後にfalse
             })

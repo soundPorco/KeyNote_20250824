@@ -15,9 +15,9 @@ const AddNoteBtn = ({ notes, setNotes }) => {
             <div>
                 <button
                     onClick={addNote}
-                    className="bg-gray-300 font-bold text-lg fixed bottom-8 right-8 "
+                    className="bg-gray-300 font-bold text-xl fixed bottom-8 right-8 px-5 py-3 hover:bg-blue-400 hover:text-white rounded-full transition"
                 >
-                    noteを追加する
+                    Add Note
                 </button>
             </div>
         </>

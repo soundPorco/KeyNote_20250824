@@ -6,4 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
     plugins: [tailwindcss(), react()],
     base: "/KeyNote_20250824/",
+    build: {
+        outDir: "docs",
+    },
 });
