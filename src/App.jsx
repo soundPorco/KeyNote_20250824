@@ -34,13 +34,26 @@ function App() {
         // console.log(id);
     };
 
+    // ノートの検索用関数
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const filterdNotes = notes.filter((note) =>
+        note.content.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
-        <div className="text-center mx-auto">
+        <div className="mx-auto p-0">
             <DeleteContext.Provider value={{ deleteNote }}>
-                <Title />
-                <Menu />
-                <Notes notes={notes} updateNote={updateNote} />
-                <AddNoteBtn notes={notes} setNotes={setNotes} />
+                <div className="fixed top-0 z-50">
+                    <Menu
+                        searchQuery={searchQuery}
+                        setSearchQuery={setSearchQuery}
+                    />
+                </div>
+                <div className="mt-24">
+                    <Notes notes={filterdNotes} updateNote={updateNote} />
+                    <AddNoteBtn notes={notes} setNotes={setNotes} />
+                </div>
             </DeleteContext.Provider>
         </div>
     );
