@@ -7,7 +7,7 @@ const DeleteBtn = ({ id }) => {
     return (
         <>
             <button
-                className="absolute top-4 left-4 hover:text-red-500 transition hover:cursor-pointer"
+                className=" hover:text-red-500 transition hover:cursor-pointer"
                 onClick={() => deleteNote(id)}
             >
                 <span className="material-symbols-outlined">delete</span>

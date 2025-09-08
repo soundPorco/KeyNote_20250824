@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Title from "./Title";
+// import Title from "./Title";
 import Menu from "./Menu";
 import AddNoteBtn from "./AddNoteBtn";
 import Notes from "./Notes";
@@ -17,7 +17,7 @@ function App() {
     // notesが変わるたびlocalStorageに保存
     useEffect(() => {
         localStorage.setItem("note", JSON.stringify(notes));
-    });
+    }, [notes]);
 
     // ノート編集用関数
     const updateNote = (id, newData) => {
@@ -34,12 +34,23 @@ function App() {
         // console.log(id);
     };
 
+    // 並び替え用のstate
+    const [sortOrder, setSortOrder] = useState("newest"); // "newest" or "oldest（とりあえず２パターン）"
     // ノートの検索用関数
     const [searchQuery, setSearchQuery] = useState("");
 
-    const filterdNotes = notes.filter((note) =>
-        note.content.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    // 並び替え＋検索をまとめて処理
+    const filteredSortedNotes = [...notes]
+        .filter((note) =>
+            note.content.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        .sort((a, b) => {
+            if (sortOrder === "newest") {
+                return b.id - a.id; // idがDate.now()ならこれでOK
+            } else {
+                return a.id - b.id;
+            }
+        });
 
     return (
         <div className="mx-auto p-0">
@@ -48,10 +59,15 @@ function App() {
                     <Menu
                         searchQuery={searchQuery}
                         setSearchQuery={setSearchQuery}
+                        sortOrder={sortOrder}
+                        setSortOrder={setSortOrder}
                     />
                 </div>
                 <div className="mt-24">
-                    <Notes notes={filterdNotes} updateNote={updateNote} />
+                    <Notes
+                        notes={filteredSortedNotes}
+                        updateNote={updateNote}
+                    />
                     <AddNoteBtn notes={notes} setNotes={setNotes} />
                 </div>
             </DeleteContext.Provider>
