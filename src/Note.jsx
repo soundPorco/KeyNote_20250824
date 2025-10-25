@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react";
 import CopyIcon from "./CopyIcon";
 import DeleteBtn from "./DeleteBtn";
 import EditBtn from "./EditBtn";
-
 import autosize from "autosize";
 
 const Note = ({ note, updateNote }) => {
@@ -11,7 +10,7 @@ const Note = ({ note, updateNote }) => {
 
     // noteの内容を編集用にstateで保持
     const [editData, setEditData] = useState({
-        content: note.content,
+        title: note.title,
         loginId: note.loginId,
         password: note.password,
         memo: note.memo,
@@ -64,20 +63,29 @@ const Note = ({ note, updateNote }) => {
                             saveEdit={saveEdit}
                         />
                     </div>
-                    {/* タイトル */}
-                    <h2 className="flex items-center font-bold text-xl p-5 min-h-20 h-full">
-                        {toggleEdit ? (
-                            <input
-                                type="text"
-                                name="content"
-                                value={editData.content}
-                                onChange={handleChange}
-                                className="w-full h-full outline-none cursor-pointer bg-transparent p-0"
-                            />
-                        ) : (
-                            <span className="truncate">{editData.content}</span>
-                        )}
-                    </h2>
+                    <div className="flex flex-col items-start justify-center h-full p-5 mt-5">
+                        {/* 作成日・更新日 */}
+                        <div className="text-sm text-gray-500 mb-1">
+                            <p>作成日:2025/10/25</p>
+                            <p>更新日:2025/10/26</p>
+                        </div>
+                        {/* タイトル（titleって名前やけどtitleやで、変更しようとしたらバグったのでそのままにしてます。） */}
+                        <h2 className="font-bold text-xl min-h-20">
+                            {toggleEdit ? (
+                                <input
+                                    type="text"
+                                    name="title"
+                                    value={editData.title}
+                                    onChange={handleChange}
+                                    className="w-full outline-none cursor-pointer bg-transparent p-0"
+                                />
+                            ) : (
+                                <span className="truncate">
+                                    {editData.title}
+                                </span>
+                            )}
+                        </h2>
+                    </div>
                 </div>
 
                 {/* 右側 */}
@@ -174,118 +182,6 @@ const Note = ({ note, updateNote }) => {
                     </div>
                 </div>
             </div>
-
-            {/* 念の為に保存 */}
-            {/* <div className="defaultNote relative divide-y divide-gray-300 bg-white border-1 rounded-xl w-lg p-2 my-2 mx-auto">
-                <EditBtn
-                    toggleEdit={toggleEdit}
-                    startEdit={startEdit}
-                    saveEdit={saveEdit}
-                />
-
-                ノートの削除ボタン
-                <DeleteBtn id={note.id} />
-
-                ノートのタイトル
-                <h2 className="text-center font-bold text-xl p-5 min-h-20">
-                    {toggleEdit ? (
-                        <input
-                            type="text"
-                            name="content"
-                            value={editData.content}
-                            onChange={handleChange}
-                            className="text-center outline-none cursor-pointer"
-                        />
-                    ) : (
-                        <span className="truncate">{editData.content}</span>
-                    )}
-                </h2>
-                ログインID
-                <div className="loginId-part flex items-center p-3">
-                    <span className="font-semibold">ログインID</span>
-                    表示欄の大枠
-                    <div className="flex items-center relative ml-auto w-72 px-3 py-2 border border-gray-300 rounded-xl bg-gray-50">
-                        ID部分
-                        truncate で長い文字列を省略
-                        <span className="truncate flex-1 pr-8">
-                            {toggleEdit ? (
-                                <input
-                                    type="text"
-                                    name="loginId"
-                                    value={editData.loginId}
-                                    onChange={handleChange}
-                                    className="w-full outline-none"
-                                />
-                            ) : (
-                                <span className="">{editData.loginId}</span>
-                            )}
-                        </span>
-                        コピーアイコン
-                        データが空の時は非表示にする
-                        {editData.loginId ? (
-                            <CopyIcon copyText={editData.loginId} />
-                        ) : null}
-                    </div>
-                </div>
-                パスワード
-                <div className="password-part flex items-center p-3">
-                    <span
-                        className="font-semibold flex items-center hover:text-blue-500 transition"
-                        onClick={() => setShowPassword(!showPassword)}
-                    >
-                        パスワード
-                        目のアイコン
-                        <span className="material-symbols-outlined ms-0.5">
-                            {showPassword ? "visibility_off" : "visibility"}
-                        </span>
-                    </span>
-
-                    <div className="ml-auto relative flex items-center w-72 px-3 py-2 border border-gray-300 rounded-xl bg-gray-50 text-gray-700">
-                        パスワード部分
-                        <span className="truncate flex-1 pr-8">
-                            {toggleEdit ? (
-                                <input
-                                    表示/非表示切替
-                                    type={showPassword ? "text" : "password"}
-                                    name="password"
-                                    value={editData.password}
-                                    onChange={handleChange}
-                                    className="w-full outline-none"
-                                />
-                            ) : (
-                                <span className="truncate">
-                                    {!showPassword && editData.password
-                                        ? "•".repeat(editData.password.length)
-                                        : editData.password}
-                                </span>
-                            )}
-                            コピーアイコン
-                            データが空の時は非表示にする
-                            {editData.password ? (
-                                <CopyIcon copyText={editData.password} />
-                            ) : null}
-                        </span>
-                    </div>
-                </div>
-                メモ
-                <div className="memo-part flex items-center p-3">
-                    <span className="font-semibold ">メモ</span>
-                    <div className="ml-auto w-72 px-3 py-2 border border-gray-300 rounded-xl bg-gray-50">
-                        メモ部分
-                        {toggleEdit ? (
-                            <textarea
-                                rows="4"
-                                name="memo"
-                                value={editData.memo}
-                                onChange={handleChange}
-                                className="w-full p-2 outline-none"
-                            />
-                        ) : (
-                            <div>{editData.memo}</div>
-                        )}
-                    </div>
-                </div>
-            </div> */}
         </>
     );
 };

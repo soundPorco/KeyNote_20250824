@@ -42,7 +42,7 @@ function App() {
     // 並び替え＋検索をまとめて処理
     const filteredSortedNotes = [...notes]
         .filter((note) =>
-            note.content.toLowerCase().includes(searchQuery.toLowerCase())
+            note.title.toLowerCase().includes(searchQuery.toLowerCase())
         )
         .sort((a, b) => {
             if (sortOrder === "newest") {

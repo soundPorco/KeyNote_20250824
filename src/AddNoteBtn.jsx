@@ -2,7 +2,7 @@ const AddNoteBtn = ({ notes, setNotes }) => {
     const addNote = () => {
         const newNote = {
             id: Date.now() /*現在の時刻秒が一意な値として入る*/,
-            content: "New Note",
+            title: "New Note",
             loginId: "",
             password: "",
             memo: "",
