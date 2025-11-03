@@ -41,7 +41,7 @@ const Menu = ({ searchQuery, setSearchQuery, sortOrder, setSortOrder }) => {
                             {sortOrder === "newest" ? "新しい順" : "古い順"}
                         </button>
                         {openSort && (
-                            <div className="bg-white border rounded shadow-md z-10 w-36 absolute right-2 mt-1">
+                            <div className="bg-white border rounded shadow-md z-10 w-48 absolute right-2 mt-1">
                                 <button
                                     className={`block w-full text-left px-4 py-2 hover:bg-blue-100 ${
                                         sortOrder === "newest"
@@ -53,7 +53,7 @@ const Menu = ({ searchQuery, setSearchQuery, sortOrder, setSortOrder }) => {
                                         setOpenSort(false);
                                     }}
                                 >
-                                    新しい順
+                                    作成日が新しい順
                                 </button>
                                 <button
                                     className={`block w-full text-left px-4 py-2 hover:bg-blue-100 ${
@@ -66,17 +66,11 @@ const Menu = ({ searchQuery, setSearchQuery, sortOrder, setSortOrder }) => {
                                         setOpenSort(false);
                                     }}
                                 >
-                                    古い順
+                                    作成日が古い順
                                 </button>
                             </div>
                         )}
                     </div>
-                    {/* <p className="bg-gray-300 rounded-2xl ps-2 pe-4 py-1.5 hover:bg-blue-400 hover:text-white  transition flex items-center h-[36px]">
-                        <span className="material-symbols-outlined">
-                            arrow_drop_down
-                        </span>
-                        絞り込み
-                    </p> */}
                 </div>
             </div>
         </>
