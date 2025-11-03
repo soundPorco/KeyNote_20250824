@@ -10,10 +10,13 @@ const Note = ({ note, updateNote }) => {
 
     // noteの内容を編集用にstateで保持
     const [editData, setEditData] = useState({
+        id: note.id,
         title: note.title,
         loginId: note.loginId,
         password: note.password,
         memo: note.memo,
+        createdAt: note.createdAt, // 追加（初期は作成時刻と同じ）
+        updatedAt: note.updatedAt,
     });
 
     // パスワード表示用state
@@ -49,6 +52,22 @@ const Note = ({ note, updateNote }) => {
         }
     }, []);
 
+    // 作成日時と更新日時の取得
+    const createdAt = note.createdAt ?? note.id;
+    const updatedAt = note.updatedAt ?? note.createdAt ?? note.id;
+    const formatDate = (ts) => {
+        //tsはtimestamp意味//
+        if (!ts) return "";
+        // 以下で日付として見やすいように変換//
+        return new Date(ts).toLocaleString("ja-JP", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+        });
+    };
+
     return (
         <>
             <div className="defaultNote bg-white border-1 rounded-xl w-3xl p-2 my-2 mx-auto grid [grid-template-columns:3fr_7fr] gap-3 justify-between min-h-[150px]">
@@ -66,8 +85,8 @@ const Note = ({ note, updateNote }) => {
                     <div className="flex flex-col items-start justify-center h-full p-5 mt-5">
                         {/* 作成日・更新日 */}
                         <div className="text-sm text-gray-500 mb-1">
-                            <p>作成日:2025/10/25</p>
-                            <p>更新日:2025/10/26</p>
+                            <p>作成日:{formatDate(createdAt)}</p>
+                            <p>更新日:{formatDate(updatedAt)}</p>
                         </div>
                         {/* タイトル（titleって名前やけどtitleやで、変更しようとしたらバグったのでそのままにしてます。） */}
                         <h2 className="font-bold text-xl min-h-20">

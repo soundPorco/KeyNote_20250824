@@ -6,6 +6,8 @@ const AddNoteBtn = ({ notes, setNotes }) => {
             loginId: "",
             password: "",
             memo: "",
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
         };
         setNotes([...notes, newNote]);
     };

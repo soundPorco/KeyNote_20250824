@@ -23,7 +23,9 @@ function App() {
     const updateNote = (id, newData) => {
         setNotes((notes) =>
             notes.map((note) =>
-                note.id === id ? { ...note, ...newData } : note
+                note.id === id
+                    ? { ...note, ...newData, updatedAt: Date.now() } // 更新日時を付与 //
+                    : note
             )
         );
     };
