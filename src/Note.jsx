@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import CopyIcon from "./CopyIcon";
 import DeleteBtn from "./DeleteBtn";
 import EditBtn from "./EditBtn";
+import RandomPassBtn from "./RandomPassBtn";
 import autosize from "autosize";
 
 const Note = ({ note, updateNote }) => {
@@ -81,6 +82,7 @@ const Note = ({ note, updateNote }) => {
                             startEdit={startEdit}
                             saveEdit={saveEdit}
                         />
+                        <RandomPassBtn />
                     </div>
                     <div className="flex flex-col items-start justify-center h-full p-5 mt-5">
                         {/* 作成日・更新日 */}
