@@ -49,24 +49,38 @@ const RandomPassBtn = () => {
                 <>
                     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50">
                         <div className="bg-white rounded-lg p-6 w-120">
-                            <h2 className="text-lg font-semibold mb-4 text-center">
+                            <h2 className="text-2xl font-semibold mb-10 text-center">
                                 ランダムパスワード生成
                             </h2>
-                            <p className="mb-4">生成されたパスワード</p>
+
                             <div className="grid grid-cols-2 gap-2 mb-4 px-3">
                                 <div>
-                                    <input type="checkbox" /> 特殊文字を含める
+                                    <input type="checkbox" /> 特殊文字を含めない
                                 </div>
                                 <div>
-                                    <input type="checkbox" /> 大文字を含める
+                                    <input type="checkbox" /> 大文字を含めない
                                 </div>
 
                                 <div>
-                                    <input type="checkbox" /> 数字を含める
+                                    <input type="checkbox" /> 数字を含めない
                                 </div>
                                 <div>
-                                    <input type="checkbox" /> 小文字を含める
+                                    <input type="checkbox" /> 小文字を含めない
                                 </div>
+                            </div>
+                            <p className="">生成されたパスワード</p>
+                            <div className="flex items-center w-full ml-auto px-3 py-2 border border-gray-300 rounded-xl bg-gray-50">
+                                <span className="truncate flex-1 pr-8">
+                                    <input
+                                        type="text"
+                                        name=""
+                                        className="w-full h-full outline-none bg-transparent p-0"
+                                    />
+                                </span>
+                                {/* {editData.loginId ? (
+                                    <CopyIcon copyText={editData.loginId} />
+                                ) : null} */}
+                                <CopyIcon />
                             </div>
                             <button
                                 onClick={generateRandomPassword}
