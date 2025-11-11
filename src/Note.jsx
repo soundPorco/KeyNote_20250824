@@ -82,7 +82,11 @@ const Note = ({ note, updateNote }) => {
                             startEdit={startEdit}
                             saveEdit={saveEdit}
                         />
-                        <RandomPassBtn />
+                        <RandomPassBtn
+                            noteTitle={editData.title}
+                            notePassword={editData.password}
+                            handleChange={handleChange}
+                        />
                     </div>
                     <div className="flex flex-col items-start justify-center h-full p-5 mt-5">
                         {/* 作成日・更新日 */}

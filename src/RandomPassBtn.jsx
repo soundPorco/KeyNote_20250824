@@ -1,10 +1,13 @@
 import { useState } from "react";
+import CopyIcon from "./CopyIcon";
 
-const RandomPassBtn = () => {
+const RandomPassBtn = ({ noteTitle, handleChange }) => {
     const [Modal, setModal] = useState(false);
+    const [length, setLength] = useState(12);
+    const [generatedPassword, setGeneratedPassword] = useState("");
 
     // ランダムパスワード生成関数
-    const generateRandomPassword = () => {
+    const generateRandomPassword = (length) => {
         const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         const lower = "abcdefghijklmnopqrstuvwxyz";
         const numbers = "0123456789";
@@ -23,10 +26,23 @@ const RandomPassBtn = () => {
         }
 
         // ランダムに並び替え（シャッフル）
-        return password
+        password
             .split("")
             .sort(() => Math.random() - 0.5)
             .join("");
+
+        return setGeneratedPassword(password);
+    };
+
+    // パスワード確定関数
+    const confirmPassword = () => {
+        handleChange({
+            target: {
+                name: "password",
+                value: generatedPassword,
+            },
+        });
+        closeModal();
     };
 
     // モーダルを開閉する関数
@@ -48,12 +64,50 @@ const RandomPassBtn = () => {
             {Modal && (
                 <>
                     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50">
-                        <div className="bg-white rounded-lg p-6 w-120">
-                            <h2 className="text-2xl font-semibold mb-10 text-center">
-                                ランダムパスワード生成
+                        <div className="bg-white rounded-lg p-6 pb-10 w-120 relative">
+                            <div
+                                onClick={closeModal}
+                                className=" hover:cursor-pointer"
+                            >
+                                <p className="text-md absolute right-4 top-3 rounded-2xl px-2 py-1  text-gray-500 hover:bg-gray-200 transition">
+                                    ✖️
+                                </p>
+                            </div>
+                            <h2 className="text-4xl font-bold text-center">
+                                {/* 該当ノートのタイトル */}
+                                {noteTitle}
                             </h2>
+                            <h3 className="text-sm mb-10 text-center">
+                                ランダムパスワード生成
+                            </h3>
 
-                            <div className="grid grid-cols-2 gap-2 mb-4 px-3">
+                            <div className="flex items-center w-full ml-auto px-3 py-2 border border-gray-300 rounded-xl bg-gray-50 mb-6 text-2xl tracking-wider text-center relative">
+                                <span className="truncate flex-1 pr-8">
+                                    <input
+                                        type="text"
+                                        readOnly
+                                        value={generatedPassword}
+                                        className="w-full h-full outline-none bg-transparent p-0"
+                                    />
+                                </span>
+
+                                <CopyIcon
+                                    text={generatedPassword}
+                                    className="absolute right-4"
+                                />
+                            </div>
+
+                            <div className="flex items-center mb-4 px-3">
+                                <input
+                                    type="number"
+                                    onChange={(e) => setLength(e.target.value)}
+                                    value={length}
+                                    className="border border-gray-300 rounded-md p-2"
+                                />
+                                <p>：パスワードの桁数を指定</p>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-2 mb-6 px-5">
                                 <div>
                                     <input type="checkbox" /> 特殊文字を含めない
                                 </div>
@@ -68,7 +122,8 @@ const RandomPassBtn = () => {
                                     <input type="checkbox" /> 小文字を含めない
                                 </div>
                             </div>
-                            <p className="">生成されたパスワード</p>
+                            {/* <p className="">生成されたパスワード</p>
+                            
                             <div className="flex items-center w-full ml-auto px-3 py-2 border border-gray-300 rounded-xl bg-gray-50">
                                 <span className="truncate flex-1 pr-8">
                                     <input
@@ -77,23 +132,26 @@ const RandomPassBtn = () => {
                                         className="w-full h-full outline-none bg-transparent p-0"
                                     />
                                 </span>
-                                {/* {editData.loginId ? (
-                                    <CopyIcon copyText={editData.loginId} />
-                                ) : null} */}
+                                
                                 <CopyIcon />
+                            </div> */}
+
+                            <div className="flex gap-1 mt-6 px-5">
+                                <button
+                                    onClick={() =>
+                                        generateRandomPassword(length)
+                                    }
+                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition mx-auto"
+                                >
+                                    生成
+                                </button>
+                                <button
+                                    onClick={() => confirmPassword()}
+                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition mx-auto"
+                                >
+                                    確定
+                                </button>
                             </div>
-                            <button
-                                onClick={generateRandomPassword}
-                                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition mr-2"
-                            >
-                                生成
-                            </button>
-                            <button
-                                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition mx-auto"
-                                onClick={closeModal}
-                            >
-                                閉じる
-                            </button>
                         </div>
                     </div>
                 </>
