@@ -1,10 +1,12 @@
 import { useState } from "react";
 import CopyIcon from "./CopyIcon";
 
-const RandomPassBtn = ({ noteTitle, handleChange }) => {
+const RandomPassBtn = ({ noteTitle, handleChange, editDataPassword }) => {
     const [Modal, setModal] = useState(false);
     const [length, setLength] = useState(12);
-    const [generatedPassword, setGeneratedPassword] = useState("");
+    const [generatedPassword, setGeneratedPassword] = useState(
+        editDataPassword || ""
+    );
 
     // 各文字を含めるかどうかを管理するstate
     const [excludeUpper, setExcludeUpper] = useState(false);
@@ -174,19 +176,6 @@ const RandomPassBtn = ({ noteTitle, handleChange }) => {
                                     小文字を含めない
                                 </div>
                             </div>
-                            {/* <p className="">生成されたパスワード</p>
-                            
-                            <div className="flex items-center w-full ml-auto px-3 py-2 border border-gray-300 rounded-xl bg-gray-50">
-                                <span className="truncate flex-1 pr-8">
-                                    <input
-                                        type="text"
-                                        name=""
-                                        className="w-full h-full outline-none bg-transparent p-0"
-                                    />
-                                </span>
-                                
-                                <CopyIcon />
-                            </div> */}
 
                             <div className="flex gap-1 mt-6 px-5">
                                 <button

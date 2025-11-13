@@ -85,6 +85,7 @@ const Note = ({ note, updateNote }) => {
                         <RandomPassBtn
                             noteTitle={editData.title}
                             notePassword={editData.password}
+                            editDataPassword={editData.password}
                             handleChange={handleChange}
                         />
                     </div>
