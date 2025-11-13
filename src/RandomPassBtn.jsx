@@ -6,19 +6,40 @@ const RandomPassBtn = ({ noteTitle, handleChange }) => {
     const [length, setLength] = useState(12);
     const [generatedPassword, setGeneratedPassword] = useState("");
 
+    // 各文字を含めるかどうかを管理するstate
+    const [excludeUpper, setExcludeUpper] = useState(false);
+    const [excludeLower, setExcludeLower] = useState(false);
+    const [excludeNumbers, setExcludeNumbers] = useState(false);
+    const [excludeSymbols, setExcludeSymbols] = useState(false);
+
     // ランダムパスワード生成関数
     const generateRandomPassword = (length) => {
         const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         const lower = "abcdefghijklmnopqrstuvwxyz";
         const numbers = "0123456789";
         const symbols = "!@#$%^&*()_+[]{}<>?,.";
-        const all = upper + lower + numbers + symbols;
+
+        let all = "";
+        if (!excludeUpper) all += upper;
+        if (!excludeLower) all += lower;
+        if (!excludeNumbers) all += numbers;
+        if (!excludeSymbols) all += symbols;
+
+        if (all.length === 0) {
+            // 何も選択されていない場合の処理
+            alert("少なくとも1つの文字種を選択してください");
+            return;
+        }
 
         let password = "";
-        password += upper[Math.floor(Math.random() * upper.length)];
-        password += lower[Math.floor(Math.random() * lower.length)];
-        password += numbers[Math.floor(Math.random() * numbers.length)];
-        password += symbols[Math.floor(Math.random() * symbols.length)];
+        if (!excludeUpper)
+            password += upper[Math.floor(Math.random() * upper.length)];
+        if (!excludeLower)
+            password += lower[Math.floor(Math.random() * lower.length)];
+        if (!excludeNumbers)
+            password += numbers[Math.floor(Math.random() * numbers.length)];
+        if (!excludeSymbols)
+            password += symbols[Math.floor(Math.random() * symbols.length)];
 
         // 残りの文字をランダムに追加
         for (let i = password.length; i < length; i++) {
@@ -109,17 +130,46 @@ const RandomPassBtn = ({ noteTitle, handleChange }) => {
 
                             <div className="grid grid-cols-2 gap-2 mb-6 px-5">
                                 <div>
-                                    <input type="checkbox" /> 特殊文字を含めない
+                                    <input
+                                        type="checkbox"
+                                        checked={excludeSymbols}
+                                        onChange={() => {
+                                            setExcludeSymbols(!excludeSymbols);
+                                            console.log(excludeSymbols);
+                                        }}
+                                    />{" "}
+                                    特殊文字を含めない
                                 </div>
                                 <div>
-                                    <input type="checkbox" /> 大文字を含めない
+                                    <input
+                                        type="checkbox"
+                                        checked={excludeUpper}
+                                        onChange={() =>
+                                            setExcludeUpper(!excludeUpper)
+                                        }
+                                    />{" "}
+                                    大文字を含めない
                                 </div>
 
                                 <div>
-                                    <input type="checkbox" /> 数字を含めない
+                                    <input
+                                        type="checkbox"
+                                        checked={excludeNumbers}
+                                        onChange={() =>
+                                            setExcludeNumbers(!excludeNumbers)
+                                        }
+                                    />{" "}
+                                    数字を含めない
                                 </div>
                                 <div>
-                                    <input type="checkbox" /> 小文字を含めない
+                                    <input
+                                        type="checkbox"
+                                        checked={excludeLower}
+                                        onChange={() =>
+                                            setExcludeLower(!excludeLower)
+                                        }
+                                    />{" "}
+                                    小文字を含めない
                                 </div>
                             </div>
                             {/* <p className="">生成されたパスワード</p>
