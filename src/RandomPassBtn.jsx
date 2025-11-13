@@ -47,7 +47,7 @@ const RandomPassBtn = ({ noteTitle, handleChange }) => {
         }
 
         // ランダムに並び替え（シャッフル）
-        password
+        password = password
             .split("")
             .sort(() => Math.random() - 0.5)
             .join("");
@@ -121,7 +121,9 @@ const RandomPassBtn = ({ noteTitle, handleChange }) => {
                             <div className="flex items-center mb-4 px-3">
                                 <input
                                     type="number"
-                                    onChange={(e) => setLength(e.target.value)}
+                                    onChange={(e) =>
+                                        setLength(Number(e.target.value))
+                                    }
                                     value={length}
                                     className="border border-gray-300 rounded-md p-2"
                                 />
