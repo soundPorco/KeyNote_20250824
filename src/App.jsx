@@ -65,7 +65,7 @@ function App() {
                         setSortOrder={setSortOrder}
                     />
                 </div>
-                <div className="mt-24">
+                <div className="md:mt-24 mt-28">
                     <Notes
                         notes={filteredSortedNotes}
                         updateNote={updateNote}

@@ -71,7 +71,7 @@ const Note = ({ note, updateNote }) => {
 
     return (
         <>
-            <div className="defaultNote bg-white border-1 rounded-xl w-3xl p-2 my-2 mx-auto grid [grid-template-columns:3fr_7fr] gap-3 justify-between min-h-[150px]">
+            <div className="defaultNote bg-white border-1 rounded-xl w-3xl p-2 my-2 mx-auto grid [grid-template-columns:3fr_7fr]  gap-3 justify-between min-h-[150px]">
                 {/* 左側 */}
                 <div className="relative h-full">
                     {/* 編集・削除ボタン */}

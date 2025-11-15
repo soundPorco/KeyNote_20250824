@@ -1,7 +1,7 @@
 const Title = () => {
     return (
         <>
-            <div className="p-2">
+            <div className="p-2 hidden md:block">
                 {/* 検索欄
                 <input
                     type="text"
