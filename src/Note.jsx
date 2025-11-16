@@ -125,7 +125,9 @@ const Note = ({ note, updateNote }) => {
                 <div className="divide-y divide-gray-300 h-full md:w-[65%]">
                     {/* ログインID */}
                     <div className="flex items-center p-3 gap-3 w-full">
-                        <span className="font-semibold w-36">ログインID</span>
+                        <span className="font-semibold md:w-36 w-44">
+                            ログインID
+                        </span>
                         <div className="flex items-center relative w-full ml-auto px-3 py-2 border border-gray-300 rounded-xl bg-gray-50">
                             <span className="truncate flex-1 pr-8">
                                 {toggleEdit ? (
@@ -150,7 +152,7 @@ const Note = ({ note, updateNote }) => {
                     {/* パスワード */}
                     <div className="password-part flex items-center p-3 gap-3">
                         <span
-                            className="font-semibold w-36 flex items-center hover:text-blue-500 transition"
+                            className="font-semibold md:w-36 w-44 flex items-center hover:text-blue-500 transition"
                             onClick={() => setShowPassword(!showPassword)}
                         >
                             パスワード

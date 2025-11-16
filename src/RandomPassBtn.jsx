@@ -87,7 +87,7 @@ const RandomPassBtn = ({ noteTitle, handleChange, editDataPassword }) => {
             {Modal && (
                 <>
                     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50">
-                        <div className="bg-white rounded-lg p-6 pb-10 w-120 relative">
+                        <div className="bg-white rounded-lg md:p-6 p-3 pb-10 md:w-120 w-[90%] relative">
                             <div
                                 onClick={closeModal}
                                 className=" hover:cursor-pointer"
@@ -127,12 +127,12 @@ const RandomPassBtn = ({ noteTitle, handleChange, editDataPassword }) => {
                                         setLength(Number(e.target.value))
                                     }
                                     value={length}
-                                    className="border border-gray-300 rounded-md p-2"
+                                    className="border border-gray-300 rounded-md p-2 w-16 me-2"
                                 />
                                 <p>：パスワードの桁数を指定</p>
                             </div>
 
-                            <div className="grid grid-cols-2 gap-2 mb-6 px-5">
+                            <div className="grid md:grid-cols-2 grid-cols-1 gap-2 mb-6 md:px-3 px-5">
                                 <div>
                                     <input
                                         type="checkbox"
