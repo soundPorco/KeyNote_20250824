@@ -71,9 +71,11 @@ const Note = ({ note, updateNote }) => {
 
     return (
         <>
-            <div className="defaultNote bg-white border-1 rounded-xl w-3xl p-2 my-2 mx-auto grid [grid-template-columns:3fr_7fr]  gap-3 justify-between min-h-[150px]">
-                {/* 左側 */}
-                <div className="relative h-full">
+            <div className="defaultNote bg-white border-1 rounded-xl md:w-3xl w-[95%] p-2 my-2 mx-auto gap-3 md:flex justify-between min-h-[150px]">
+                {/* ーーーーーーーーー
+                左側
+                ーーーーーーーーーーー */}
+                <div className="relative h-full md:w-[30%] w-full">
                     {/* 編集・削除ボタン */}
                     <div className="flex items-center gap-2 absolute top-2 left-2">
                         <DeleteBtn id={note.id} />
@@ -89,14 +91,14 @@ const Note = ({ note, updateNote }) => {
                             handleChange={handleChange}
                         />
                     </div>
-                    <div className="flex flex-col items-start justify-center h-full p-5 mt-5">
+                    <div className="flex flex-col md:items-start items-center justify-center h-full p-5 md:mt-5">
                         {/* 作成日・更新日 */}
-                        <div className="text-sm text-gray-500 mb-1">
+                        <div className="text-sm text-gray-500 mb-1 mt-5">
                             <p>作成日:{formatDate(createdAt)}</p>
                             <p>更新日:{formatDate(updatedAt)}</p>
                         </div>
-                        {/* タイトル（titleって名前やけどtitleやで、変更しようとしたらバグったのでそのままにしてます。） */}
-                        <h2 className="font-bold text-xl min-h-20">
+
+                        <h2 className="font-bold text-xl md:min-h-20">
                             {toggleEdit ? (
                                 <input
                                     type="text"
@@ -113,9 +115,14 @@ const Note = ({ note, updateNote }) => {
                         </h2>
                     </div>
                 </div>
+                {/* ーーーーーーーーーー
+                左側はここまで 
+                ーーーーーーーーーーーーー*/}
 
-                {/* 右側 */}
-                <div className="divide-y divide-gray-300 h-full">
+                {/* ーーーーーーーーーーー
+                右側 
+                ーーーーーーーーーーーーー*/}
+                <div className="divide-y divide-gray-300 h-full md:w-[65%]">
                     {/* ログインID */}
                     <div className="flex items-center p-3 gap-3 w-full">
                         <span className="font-semibold w-36">ログインID</span>
@@ -207,6 +214,9 @@ const Note = ({ note, updateNote }) => {
                         </div>
                     </div>
                 </div>
+                {/* ーーーーーーーーーーーー
+                右側はここまで
+                ーーーーーーーーーーーーーーー */}
             </div>
         </>
     );

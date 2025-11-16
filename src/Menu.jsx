@@ -5,10 +5,10 @@ const Menu = ({ searchQuery, setSearchQuery, sortOrder, setSortOrder }) => {
     const [openSort, setOpenSort] = useState(false);
     return (
         <>
-            <div className="bg-white w-screen md:grid md:grid-cols-3 md:h-20 h-24 border-b border-gray-300 relative">
+            <div className="bg-white w-screen flex items-center justify-between md:h-20 h-24 border-b border-gray-300 relative">
                 <Title />
                 {/* 検索欄 */}
-                <div className="flex justify-center flex-col items-center">
+                <div className="flex justify-center flex-col items-center absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
                     <h1 className="mt-1 text-3xl font-bold md:hidden block">
                         <span className="material-symbols-outlined text-3xl">
                             sticky_note_2
@@ -25,7 +25,7 @@ const Menu = ({ searchQuery, setSearchQuery, sortOrder, setSortOrder }) => {
                     />
                 </div>
 
-                <div className="flex justify-end gap-2 pe-6">
+                <div className="pe-2">
                     {/* <p className="bg-gray-300 rounded-2xl px-4 py-1.5 hover:bg-blue-400 hover:text-white  transition flex items-center h-[36px]">
                         <span className="material-symbols-outlined">
                             border_all
@@ -36,7 +36,10 @@ const Menu = ({ searchQuery, setSearchQuery, sortOrder, setSortOrder }) => {
                         表示切り替え
                     </p> */}
                     {/* 並べ替えアコーディオン */}
-                    <div className="absolute right-2 top-10 mt-1">
+                    <div
+                        className="mt-1 md:relative absolute
+                     right-2 top-1/2"
+                    >
                         <button
                             className="bg-gray-300 rounded-2xl ps-2 pe-4 py-1.5 hover:bg-blue-400 hover:text-white transition flex items-center h-[36px] relative"
                             onClick={() => setOpenSort(!openSort)}
