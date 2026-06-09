@@ -1,12 +1,119 @@
-# React + Vite
+# keynote
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![keynoteのロゴやサムネイルをここに配置](/assets/readme1.png)
 
-Currently, two official plugins are available:
+大学生向けのメモ管理アプリ「keynote」のREADME雛形です。  
+このアプリでは、日々のメモ整理、タグ管理、検索、重要メモの固定などを一つのアプリで完結できるよう開発しました。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## アプリURL
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+[App Store / Web URL をここに記載]
+
+---
+
+## 開発背景
+
+このアプリを開発した背景として、[開発のきっかけ]があります。  
+従来のメモ管理では、情報が散らばって必要な内容をすぐに見つけづらいことが課題でした。
+
+そこで、日常的に使いやすく、必要なメモへすぐアクセスできるアプリを目指して keynote の開発を始めました。
+
+- メモを素早く残せること
+- 必要な情報をすぐ検索できること
+- UI / UX を整えて、継続的に使いやすいこと
+
+---
+
+## 主な機能
+
+- メモの作成・編集・削除
+- タグやカテゴリによる整理
+- メモ全文検索
+- 重要メモの固定表示
+- 画像やリンクの添付
+- ダークモード対応
+
+---
+
+## 使用技術
+
+### Frontend
+
+- [使用言語]
+- [フレームワーク / ライブラリ]
+- [状態管理]
+- [UIコンポーネント]
+
+### Backend / BaaS
+
+- [認証]
+- [データベース]
+- [ストレージ]
+
+### その他
+
+- [通知]
+- [分析 / ログ]
+
+---
+
+## 主な機能、アプリ画面
+
+<!-- 1段目 -->
+
+|                           メモ一覧                           |                  メモ編集                   |
+| :----------------------------------------------------------: | :-----------------------------------------: |
+|         <img src="/assets/readme1.png" width="320">          | <img src="/assets/readme1.png" width="320"> |
+| メモの一覧を確認し、重要な情報にすぐアクセスできる画面です。 | メモの作成・編集を直感的に行える画面です。  |
+
+<!-- 2段目 -->
+
+|                      検索機能                      |                         タグ管理                         |
+| :------------------------------------------------: | :------------------------------------------------------: |
+|    <img src="/assets/readme1.png" width="320">     |       <img src="/assets/readme1.png" width="320">        |
+| キーワード検索で目的のメモを素早く見つけられます。 | タグごとにメモを整理して、後から見返しやすくしています。 |
+
+---
+
+## 工夫した点
+
+### すぐ書けて、すぐ見つかる導線
+
+メモアプリとして最も大切な「入力のしやすさ」と「探しやすさ」を重視しました。  
+画面遷移を最小限にし、必要な操作へ迷わずたどり着ける構成を意識しています。
+
+---
+
+### 情報量が多くても見やすいUI
+
+メモが増えても一覧が煩雑にならないよう、余白・文字サイズ・色数を整理しました。  
+視認性を高めることで、長期的に使っても疲れにくいデザインを目指しています。
+
+---
+
+### アプリ全体の統一感
+
+ClaudeCode を活用した開発では機能追加が進むほど画面ごとの差が出やすいため、  
+配色や表記ルール、ボタン配置を揃え、アプリ全体で一貫した印象になるよう調整しました。
+
+---
+
+## 今後の改善
+
+- [今後追加したい機能 1]
+- [今後追加したい機能 2]
+- [今後追加したい機能 3]
+
+---
+
+## 制作期間
+
+約[期間]週間
+
+---
+
+## 作者
+
+GitHub: [GitHub URL]
