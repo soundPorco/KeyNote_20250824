@@ -1,6 +1,8 @@
 # keynote
 
-![keynoteのロゴやサムネイルをここに配置](/assets/readme1.png)
+<p align="center">
+  <img src="src/assets/readme-1.jpg" width="100%" />
+</p>
 
 これはパスワード管理に特化したメモアプリ「keynote」です。  
 このwebアプリでは、ユーザーが安全に、かつわかりやすい形でメモを作成・管理できるように設計されています。
