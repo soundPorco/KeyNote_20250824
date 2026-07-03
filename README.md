@@ -49,7 +49,7 @@ https://soundporco.github.io/KeyNote_20250824/
 
 |                    メモ一覧                     |                  メモ作成・編集                  |
 | :---------------------------------------------: | :----------------------------------------------: |
-| <img src="src/assets/readme-2.png" width="640"> | <img src="src/assets/readme--3.gif" width="640"> |
+| <img src="src/assets/readme-2.png" width="640"> | <img src="src/assets/readme--6.gif" width="640"> |
 | メモの一覧を確認し、重要な情報にすぐアクセス。  |    メモの作成・編集を直感的に行える画面です。    |
 
 <!-- 2段目 -->
